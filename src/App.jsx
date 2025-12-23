@@ -1,132 +1,81 @@
+import React from 'react'
 import { Component } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { Button, Flex } from 'antd'
-import { Radio } from 'antd'
-import { Image } from 'antd'
-import { Form, Input } from 'antd'
 import axios from 'axios'
-import './App.css'
+import { Table, Button, Flex } from 'antd'
 
-//类组件
-export default class App extends Component {
-  componentDidMount() {
-    this.getlist()
-  }
-  state = {
-    list: [],
-    search: '',
-     options : [
-      { label: '全部', value: '全部' },
-      { label: '北京', value: '北京' },
-      { label: '上海', value: '上海' },
-      { label: '广州', value: '广州' },
-      { label: '深圳', value: '深圳' },
-    ],
-    shai:'全部'
-
-  }
-
-  
-  async getlist() {
-    const prams = {
-
-    }
-    if (this.state.search != '') {
-      prams.name = this.state.search
-    }
-    if(this.state.shai!='全部'){
-      prams.address=this.state.shai
-    }
-    const res = await axios.get('http://localhost:3000/list', { params: prams })
-    this.setState({
-      list: res.data
-    })
-
-    console.log(this.state.list);
-
-  };
-
-  changesearch(e) {
-    this.setState({
-      search: e.target.value
-    })
-  }
-  searchval() {
-    this.getlist()
-  }
-  shai(e){
-    this.setState({
-      shai:e.target.value
-    },()=>{
-      this.getlist()
-    })
-    console.log(111);
-    
+const columns = [
+    { title: '菜品名称', dataIndex: 'name', key: 'name'},
+    { title: '菜品分类', dataIndex: 'fen' , key: 'fen'},
+    { title: '菜品价格', dataIndex: 'price', key: 'price' },
+    { title: '菜品状态', dataIndex: 'state', key: 'state',
+        render: (text) => {
+            return text === true ? '上架' : '下架'
+        }
+     },
    
-  }
+    
+];
 
 
-  render() {
-    return (
 
-      <div>
-        {/* 搜索 */}
+export default class App extends Component {
+    componentDidMount() {
+        this.getlist()
+    }
+    state = {
+        list: [],
+        selectedRowKeys: []
+    }
 
-        <div><Input placeholder='请输入小区名或地址' value={this.state.search} onChange={(e) => this.changesearch(e)} style={{ width: '200px' }} /> <Button onClick={() => this.searchval()}>搜索</Button></div>
-        {/* 筛选 */}
-        <Radio.Group
-          block
-          options={this.state.options}
-          defaultValue="全部"
-          optionType="button"
-          buttonStyle="solid"
-          style={{width: '300px'}}
-          onChange={(e)=>this.shai(e)}
-         
-         
-        />
-        <ul style={
-          {
-            // 去掉ul的默认样式
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
 
-          }
-        }>
-          {this.state.list.map((item) => (
-            <li key={item.id}>
-              <div style={
+    async getlist() {
+        const res = await axios.get('http://localhost:3000/list')
+        this.setState({
+            list: res.data
+        })
+        console.log(this.state.list);
+    }
+    render() {
+        const rowSelection = {
+            selectedRowKeys: this.state.selectedRowKeys,
+            onChange: (selectedRowKeys) => {
+                this.setState({
+                    selectedRowKeys
+                })
+            },
+            hideDefaultSelections: true,
+            selections:[
                 {
-                  display: 'flex',
-                  margin: '20px 0',
+                    key: 'all-data',
+                    text: 'Select All Data',
+                    onSelect: () => {
+                        this.setState({
+                            selectedRowKeys: [...Array(46).keys()]
+                        })
+                    }
+                },
+                //反选
+                {
+                    key: 'invert',
+                    text: 'Select Invert',
+                    onSelect: () => {
+                        const selectedRowKeys = this.state.list.map((item) => item.id)
+                        this.setState({
+                            selectedRowKeys: selectedRowKeys.filter((item) => !this.state.selectedRowKeys.includes(item))
+                        })
+                    }
                 }
-              }>
-                <Image
-                  width={120}
-                  alt="basic"
-                  src={item.img}
-                  height={100}
+                
+                
+                
+            ]
+
+        }
+        return (
+            <div>
+                <Table rowSelection={rowSelection} columns={columns} rowKey="id" dataSource={this.state.list} 
                 />
-                <div >
-                  <p>{item.name}</p>
-                  <p>{item.jian}</p>
-                </div>
-                <div style={{
-                  marginLeft: '20px',
-                }}>
-                  <h3>{item.mian}m2</h3>
-                </div>
-              </div>
-            </li>
-          ))
-          }
-        </ul>
-      </div>
-    )
-  }
-
+            </div>
+        )
+    }
 }
-
-
