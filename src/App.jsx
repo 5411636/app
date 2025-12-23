@@ -17,10 +17,13 @@ export default class App extends Component {
     list: [],
     search: '',
      options : [
-      { label: '', value: '' },
-      { label: 'Pear', value: 'Pear' },
-      { label: 'Orange', value: 'Orange' },
-    ]
+      { label: '全部', value: '全部' },
+      { label: '北京', value: '北京' },
+      { label: '上海', value: '上海' },
+      { label: '广州', value: '广州' },
+      { label: '深圳', value: '深圳' },
+    ],
+    shai:'全部'
 
   }
 
@@ -31,6 +34,9 @@ export default class App extends Component {
     }
     if (this.state.search != '') {
       prams.name = this.state.search
+    }
+    if(this.state.shai!='全部'){
+      prams.address=this.state.shai
     }
     const res = await axios.get('http://localhost:3000/list', { params: prams })
     this.setState({
@@ -49,6 +55,16 @@ export default class App extends Component {
   searchval() {
     this.getlist()
   }
+  shai(e){
+    this.setState({
+      shai:e.target.value
+    },()=>{
+      this.getlist()
+    })
+    console.log(111);
+    
+   
+  }
 
 
   render() {
@@ -62,10 +78,13 @@ export default class App extends Component {
         <Radio.Group
           block
           options={this.state.options}
-          defaultValue="Apple"
+          defaultValue="全部"
           optionType="button"
           buttonStyle="solid"
-          style={{width: '100px'}}
+          style={{width: '300px'}}
+          onChange={(e)=>this.shai(e)}
+         
+         
         />
         <ul style={
           {
