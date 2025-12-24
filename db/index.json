@@ -2,45 +2,18 @@
   "list": [
     {
       "id": 1,
-      "name": "菜品1",
-      "state": true,
-      "price": 10,
-      "fen": "分类1"
+      "title": "事件1",
+      "state": false
     },
     {
-      "id": 2,
-      "name": "菜品2",
-      "state": true,
-      "price": 20,
-      "fen": "分类2"
+      "title": "事件3",
+      "state": false,
+      "id": 1766561964625
     },
     {
-      "id": 3,
-      "name": "菜品3",
+      "title": "事件4",
       "state": true,
-      "price": 30,
-      "fen": "分类1"
-    },
-    {
-      "id": 4,
-      "name": "菜品4",
-      "state": true,
-      "price": 40,
-      "fen": "分类2"
-    },
-    {
-      "id": 5,
-      "name": "菜品5",
-      "state": true,
-      "price": 50,
-      "fen": "分类1"
-    },
-    {
-      "id": 6,
-      "name": "菜品6",
-      "state": true,
-      "price": 60,
-      "fen": "分类2"
+      "id": 1766561993423
     }
   ]
 }
