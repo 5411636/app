@@ -2,8 +2,8 @@
   "list": [
     {
       "id": 1,
-      "title": "事件1",
-      "state": false
+      "title": "事件12",
+      "state": true
     },
     {
       "title": "事件3",
@@ -12,7 +12,7 @@
     },
     {
       "title": "事件4",
-      "state": true,
+      "state": false,
       "id": 1766561993423
     }
   ]

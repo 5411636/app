@@ -10,7 +10,8 @@ export default class App extends Component {
      state = {
         list:[],
         shi:'',
-        ceid:0
+        ceid:0,
+        ceti:''
     }
     async getlist (){
       const res = await axios.get('http://localhost:3000/list')
@@ -47,9 +48,25 @@ export default class App extends Component {
     }
     async ci(e,item){
         this.setState({
-            ceid:item.id
+            ceid:item.id,
+            ceti:item.title
         })
         
+    }
+    async bang(e){
+        this.setState({
+            ceti:e.target.value
+        })
+    }
+    async gai(e,id){
+        const res = await axios.patch(`http://localhost:3000/list/${id}`,{
+          title:this.state.ceti
+        })
+        this.getlist()
+        this.setState({
+            ceid:0
+
+        })
     }
      
     
@@ -73,9 +90,12 @@ export default class App extends Component {
                   <span style={{
                     display:item.id===this.state.ceid?'none':'inline'
                   }} onClick={(e)=>this.ci(e,item)}>{item.title}</span>
-                  
+                  <Input onPressEnter={(e)=>this.gai(e,item.id)}  onChange={(e)=>this.bang(e)} value={this.state.ceti} style={{
+                    display:item.id===this.state.ceid?'inline':'none',
+                    width:'200px'
+                  }}/>
                   <button onClick={(e)=>this.del(e,item.id)}>删除</button>
-                </li>
+                </li> 
               )
             })
         }
