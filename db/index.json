@@ -1,19 +1,47 @@
 {
+  "login": [
+    {
+      "username": "admin",
+      "password": "123456",
+      "id": 1
+    }
+  ],
   "list": [
     {
       "id": 1,
-      "title": "事件12",
-      "state": true
+      "question": "这题的答案是A",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "answer": "A"
     },
     {
-      "title": "事件3",
-      "state": false,
-      "id": 1766561964625
+      "id": 2,
+      "question": "这题的答案是B",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "answer": "B"
     },
     {
-      "title": "事件4",
-      "state": false,
-      "id": 1766561993423
+      "id": 3,
+      "question": "这题的答案是C",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "answer": "C"
+    },
+    {
+      "id": 4,
+      "question": "这题的答案是D",
+      "A": "A",
+      "B": "B",
+      "C": "C",
+      "D": "D",
+      "answer": "D"
     }
   ]
 }
