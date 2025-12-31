@@ -1,55 +1,40 @@
 {
-  "login": [
-    {
-      "username": "admin",
-      "password": "123456",
-      "id": 1
-    }
-  ],
   "list": [
     {
+      "name": "张三1",
+      "phone": "123456789",
+      "address": "北京市",
+      "xaddress": "北京区",
+      "state": false,
       "id": 1,
-      "name": "文集1"
+      "img": "/public/1.png"
     },
     {
       "id": 2,
-      "name": "文集2"
-    },
-    {
-      "name": "文集3",
-      "id": 1766979626200
-    }
-  ],
-  "article": [
-    {
-      "id": 1,
-      "title": "文章1",
-      "content": "这是文章1的内容111",
-      "list_id": 1
-    },
-    {
-      "id": 2,
-      "title": "文章2",
-      "content": "这是文章2的内容",
-      "list_id": 2
+      "name": "李四",
+      "address": "上海市",
+      "img": "/public/2.png",
+      "state": true,
+      "phone": "123456789",
+      "xaddress": "上海区"
     },
     {
       "id": 3,
-      "title": "文章3",
-      "content": "这是文章3的内容",
-      "list_id": 1
+      "name": "王五",
+      "address": "广州市",
+      "img": "/public/3.png",
+      "state": false,
+      "phone": "123456789",
+      "xaddress": "广州区"
     },
     {
-      "title": "文章4",
-      "content": "111",
-      "id": 1766991237061,
-      "list_id": 1
-    },
-    {
-      "title": "111",
-      "content": "222111",
-      "id": 1766991267341,
-      "list_id": 1766979626200
+      "name": "李四",
+      "phone": "1452365",
+      "address": "广州",
+      "xaddress": "广州市",
+      "state": false,
+      "id": 1767066614408,
+      "img": "/public/2.png"
     }
   ]
 }
