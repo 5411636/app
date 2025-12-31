@@ -1,0 +1,40 @@
+{
+  "list": [
+    {
+      "name": "张三1",
+      "phone": "123456789",
+      "address": "北京市",
+      "xaddress": "北京区",
+      "state": false,
+      "id": 1,
+      "img": "/public/1.png"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "address": "上海市",
+      "img": "/public/2.png",
+      "state": true,
+      "phone": "123456789",
+      "xaddress": "上海区"
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "address": "广州市",
+      "img": "/public/3.png",
+      "state": false,
+      "phone": "123456789",
+      "xaddress": "广州区"
+    },
+    {
+      "name": "李四",
+      "phone": "1452365",
+      "address": "广州",
+      "xaddress": "广州市",
+      "state": false,
+      "id": 1767066614408,
+      "img": "/public/2.png"
+    }
+  ]
+}
