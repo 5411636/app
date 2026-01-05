@@ -1,0 +1,36 @@
+{
+    "list":[
+        {
+            "id":1,
+            "name":"张三",
+            "img":"/public/1.png",
+            "price":200,
+            "address":"北京",
+            "hu":"一层"
+        },
+        {
+            "id":2,
+            "name":"李四",
+            "img":"/public/2.png",
+            "price":300,
+            "address":"上海",
+            "hu":"二层"
+        },
+        {
+            "id":3,
+            "name":"王五",
+            "img":"/public/3.png",
+            "price":400,
+            "address":"广州",
+            "hu":"三层"
+        },
+        {
+            "id":4,
+            "name":"赵六",
+            "img":"/public/4.png",
+            "price":500,
+            "address":"深圳",
+            "hu":"四层"
+        }
+    ]
+}

@@ -1,144 +1,106 @@
 import React, { Component } from 'react'
+import { Input } from 'antd';
+import { Button } from 'antd';
 import axios from 'axios'
-import { Input, Button } from 'antd'
-import { Radio } from 'antd';
-
 export class list extends Component {
     componentDidMount() {
         this.getlist()
+        this.getfu()
     }
-
     state = {
-        list: [],
-        fang: '',
-        jilu: JSON.parse(localStorage.getItem('jilu')) || [],
-        ji: '不限',
-        options: [
-            { label: '不限', value: '不限' },
-            { label: '北京', value: '北京' },
-            { label: '上海', value: '上海' },
-            { label: '广州', value: '广州' },
-            { label: '深圳', value: '深圳' },
-        ],
-        sor:'asc'
-
+        username : JSON.parse(localStorage.getItem('username')),
+        list : [],
+        name: '',
+        fu: []
     }
-
-
-    async getlist() {
-        const params = {
-            _sort: 'price',
-            _order: this.state.sor
-        }
-        if (this.state.fang != '') {
-            params.name_like = this.state.fang
-        }
-        if (this.state.ji != '不限') {
-            params.address = this.state.ji
-        }
-        const res = await axios.get('http://localhost:3000/list', { params })
+    async getlist(){
+        const res = await axios.get('http://localhost:3000/list')
         this.setState({
-            list: res.data
+            list : [...res.data].reverse()
         })
-        
+
     }
-    sou = (e) => {
+    async getfu(){
+        const res = await axios.get('http://localhost:3000/fu')
         this.setState({
-            fang: e.target.value
+            fu : res.data
+        })
+
+    }
+    bian = (e) => {
+        this.setState({
+            name: e.target.value
         })
     }
-    shua = () => {
+    async add(){
+     
+        const res = await axios.post('http://localhost:3000/list',{
+            name : this.state.username,
+            time : new Date().toLocaleString(),
+            content : this.state.name,
+            id: new Date().getTime()
+        })
+        this.setState({
+            name : ''
+        })
+        this.getlist()
+
+    }
+    async del(id){
+        const res = await axios.delete(`http://localhost:3000/list/${id}`)
         this.getlist()
     }
-    s = () => {
-        //搜索记录 本地存储 前面添加
-        let jilu = this.state.jilu
-        jilu.unshift(this.state.fang)
-        this.setState({
-            jilu
+    async hui(id){
+        const res = await axios.post('http://localhost:3000/fu',{
+            name : this.state.username,
+            time : new Date().toLocaleString(),
+            content : this.state.name,
+            id: new Date().getTime(),
+            list_id:id
         })
-        localStorage.setItem('jilu', JSON.stringify(jilu))
+        this.setState({
+            name : ''
+        })
         this.getlist()
+        this.getfu()
     }
-    clear = () => {
-        this.setState({
-            jilu: [],
-            fang: ''
-        })
-        localStorage.removeItem('jilu')
-        this.getlist()
+    async del1(id){
+        const res = await axios.delete(`http://localhost:3000/fu/${id}`)
+        this.getfu()
     }
-    so = () => {
-        this.setState({
-            sor: this.state.sor == 'asc' ? 'desc' : 'asc'
-        }, () => {
-            this.getlist()            
-        })
-    }
-    c = () => {
-        this.setState({
-            fang: '',
-            ji: '不限'
-        }, () => {
-            this.getlist()
-        })
-        localStorage.removeItem('jilu')
-        this.setState({
-            jilu: []
-        })
-    }
-    render() {
-        return (
-            <div>
-                <Input value={this.state.fang} onChange={(e) => this.sou(e)} style={{ width: '200px' }} placeholder="请输入楼房名称" />
-                <Button type="primary" onClick={() => this.s()}>搜索</Button><br></br>
-                {this.state.jilu.map((item, index) => {
-                    return item
-                })
-                }
-                <Button type="primary" onClick={() => this.clear()}>清空搜索历史</Button>
-                <Radio.Group
-                    block
-                    options={this.state.options}
-                    defaultValue={this.state.ji}
-                    value={this.state.ji}
-                    optionType="button"
-                    buttonStyle="solid"
-                    style={{
-                        width: '400px',
-                    }}
-                    onChange={(e) => {
-                        this.setState({
-                            ji: e.target.value
-                        }, () => {
-                            console.log(this.state.ji);
-                            this.getlist()
-                        })
-                    }}
-                /><br></br>
-                <Button type="primary" onClick={() => this.so()}>价格排序</Button>
-                <p onClick={()=> this.c()}>清空条件</p>
-
-                <div>
+  render() {
+    return (
+      <div>
+        <p>用户名：{this.state.username}</p>
+        <Input value={this.state.name} onChange={(e)=>this.bian(e)} placeholder="请输入留言" style={{width: '200px'}} />
+        <Button onClick={()=>this.add()}>添加</Button>
+        {
+            this.state.list.map((item,index)=>{
+                return <ul key={index}>
+                    <li>{item.name}</li>
+                    <li>{item.content}</li>
+                    <li>{item.time}</li>
+                    <Button onClick={()=>this.del(item.id)}>删除</Button>
+                    <Button onClick={()=>this.hui(item.id)}>回复</Button>
                     {
-                        this.state.list.map((item, index) => {
-                            return <div key={item.id} style={{ display: 'flex' }}>
-                                <img style={{ width: '100px', height: '100px' }} src={item.img} alt="" />
-                                <div style={{ marginLeft: '20px' }}>
-                                    <h3>{item.name} </h3>
-                                    <p>{item.hu} {item.address}</p>
-                                </div>
-                                <div style={{ marginLeft: '20px' }}>
-                                    <p style={{ color: 'red', fontSize: '20px' }}>{item.price}/元</p>
-                                </div>
-                            </div>
+                        this.state.fu.map((item2,index2)=>{
+                            if(item2.list_id == item.id){
+                                return <ul key={index2}>
+                                    <li>{item2.name}</li>
+                                    <li>{item2.content}</li>
+                                    <li>{item2.time}</li>
+                                    <Button onClick={()=>this.del1(item2.id)}>删除</Button>
+                                </ul>
+                            }
                         })
+                        
                     }
-                </div>
-
-            </div>
-        )
-    }
+                </ul>
+            })
+        }
+      </div>
+    )
+  }
 }
 
 export default list
