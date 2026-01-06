@@ -1,44 +1,44 @@
 {
-  "login": [
-    {
-      "username": "admin",
-      "password": "123456",
-      "token": "123456"
-    }
-  ],
   "list": [
     {
       "id": 1,
-      "name": "张三",
-      "content": "这是张三的留言",
-      "time": "2020-10-10 10:10:10"
+      "name": "张三1",
+      "code": "001",
+      "state": false,
+      "address": "北京市",
+      "zhu": "ZS"
     },
     {
       "id": 2,
       "name": "李四",
-      "content": "这是李四的留言",
-      "time": "2020-10-10 10:10:10"
+      "code": "002",
+      "state": false,
+      "address": "上海市",
+      "zhu": "LS"
     },
     {
       "id": 3,
       "name": "王五",
-      "content": "这是王五的留言",
-      "time": "2020-10-10 10:10:10"
+      "code": "003",
+      "state": false,
+      "address": "广州市",
+      "zhu": "WW"
     },
     {
-      "name": "admin",
-      "time": "2026/1/5 13:35:12",
-      "content": "555",
-      "id": 1767591312546
-    }
-  ],
-  "fu": [
+      "id": 4,
+      "name": "赵六",
+      "code": "004",
+      "state": true,
+      "address": "深圳市",
+      "zhu": "ZL"
+    },
     {
-      "name": "admin",
-      "time": "2026/1/5 13:36:13",
-      "content": "444",
-      "id": 1767591373506,
-      "list_id": 1767591312546
+      "name": "前期",
+      "zhu": "QQ",
+      "address": "子地址一",
+      "code": "005",
+      "state": true,
+      "id": 1767669908647
     }
   ]
 }
