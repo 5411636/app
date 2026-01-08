@@ -1,44 +1,24 @@
 {
-  "list": [
+  "list":[
     {
-      "id": 1,
-      "name": "张三1",
-      "code": "001",
-      "state": false,
-      "address": "北京市",
-      "zhu": "ZS"
+      "id":1,
+      "name":"张三",
+      "img":"/public/1.png"
     },
     {
-      "id": 2,
-      "name": "李四",
-      "code": "002",
-      "state": false,
-      "address": "上海市",
-      "zhu": "LS"
+      "id":2,
+      "name":"李四",
+      "img":"/public/2.png"
     },
     {
-      "id": 3,
-      "name": "王五",
-      "code": "003",
-      "state": false,
-      "address": "广州市",
-      "zhu": "WW"
+      "id":3,
+      "name":"王五",
+      "img":"/public/3.png"
     },
     {
-      "id": 4,
-      "name": "赵六",
-      "code": "004",
-      "state": true,
-      "address": "深圳市",
-      "zhu": "ZL"
-    },
-    {
-      "name": "前期",
-      "zhu": "QQ",
-      "address": "子地址一",
-      "code": "005",
-      "state": true,
-      "id": 1767669908647
+      "id":4,
+      "name":"赵六",
+      "img":"/public/4.png"
     }
   ]
 }
