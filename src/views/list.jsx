@@ -28,7 +28,7 @@ const list = () => {
     }
     const res = await axios.get('http://localhost:3000/list' ,{ params })
     setList([...list, ...res.data])
-    setTotal(res.headers['x-total-count'])
+    setTotal(Number(res.headers['x-total-count']))
     if (list.length < total) {
       setFinished(true)
     }
